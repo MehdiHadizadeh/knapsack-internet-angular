@@ -1,0 +1,51 @@
+<div
+  class="p-4 border-r-4 bg-white rounded-lg border border-gray-200 shadow-sm mb-3"
+  [ngClass]="getOperatorBorderColor(package().operator)"
+>
+  <div class="space-y-3">
+    <div class="flex justify-between items-start">
+      <div class="flex items-center space-x-2">
+        <svg class="h-4 w-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"
+          />
+        </svg>
+        <span class="text-sm font-medium text-gray-900 capitalize">{{ package().operator }}</span>
+      </div>
+      <span
+        class="text-white text-xs px-2 py-1 rounded-full font-medium"
+        [ngClass]="getTimeframeBadgeColor(package().timeframe)"
+      >
+        {{ getTimeframeBadgeText(package().timeframe) }}
+      </span>
+    </div>
+
+    <div class="text-lg font-bold text-gray-900">{{ formatVolume(package().volume) }}</div>
+
+    <div class="flex justify-between text-sm text-gray-700">
+      <div class="flex items-center space-x-1">
+        <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <span>{{ package().duration + ' روز' }}</span>
+      </div>
+      <div class="flex items-center space-x-1">
+        <span class="font-bold">{{ package().price | number }} تومان</span>
+      </div>
+    </div>
+
+    <div class="text-xs text-gray-500 font-medium">
+        ۱ گیگابایت = 
+         {{getEfficiency(package().volume, package().price) | number}} 
+         تومان
+    </div>
+  </div>
+</div>

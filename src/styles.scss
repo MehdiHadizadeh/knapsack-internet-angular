@@ -1,0 +1,15 @@
+@use 'tailwindcss';
+@use "assets/fonts/yekan.css";
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Yekan Bakh FaNum', sans-serif;
+}
+
+button {
+  font-family: 'Yekan Bakh FaNum', sans-serif;
+}

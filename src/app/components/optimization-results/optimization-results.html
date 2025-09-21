@@ -1,0 +1,102 @@
+@if (!result()) {
+<div class="p-6 text-center bg-white rounded-lg border border-gray-200 shadow-sm">
+  <div class="text-gray-500">
+    <svg
+      class="h-8 w-8 mx-auto mb-3 opacity-50"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+    <h3 class="text-sm font-medium mb-1">آماده بهینه‌سازی</h3>
+    <p class="text-xs">فیلترها را وارد کنید و بهینه‌سازی را انجام دهید</p>
+  </div>
+</div>
+} @else if (result()?.packages?.length) {
+<div class="space-y-4">
+  <!-- Summary Card -->
+  <div
+    class="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-gray-200 shadow-sm"
+  >
+    <h3 class="text-sm font-semibold text-gray-900 mb-3 flex items-center">
+      <svg class="h-4 w-4 ml-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+        />
+      </svg>
+      خلاصه
+    </h3>
+    <div class="grid grid-cols-2 gap-4 text-center">
+      <div>
+        <div class="text-lg font-bold text-gray-900">{{ result()!.packages?.length || 0 }}</div>
+        <div class="text-xs text-gray-600">بسته‌</div>
+      </div>
+      <div>
+        <div class="text-lg font-bold text-gray-900">{{ formatVolume(result()!.totalVolume) }}</div>
+        <div class="text-xs text-gray-600">حجم کل</div>
+      </div>
+    </div>
+
+    <div class="mt-3 space-y-2">
+      <div class="flex justify-between text-xs">
+        <span>هزینه: {{ formatPrice(result()!.totalPrice) }}</span>
+        <span>باقی مانده: {{ formatPrice(remainingBudget()) }}</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-1.5">
+        <div
+          class="bg-gradient-to-r from-blue-500 to-green-500 h-1.5 rounded-full transition-all duration-500"
+          [style.width.%]="Math.min(budgetUsage(), 100)"
+        ></div>
+      </div>
+      <div class="text-xs text-gray-600 text-center">
+        {{ budgetUsage().toFixed(1) }}% از بودجه استفاده شد
+      </div>
+    </div>
+  </div>
+
+  <!-- Packages List -->
+  <div>
+    <h3 class="text-sm font-semibold text-gray-900 mb-3">بسته‌های پیشنهادی</h3>
+    <div class="space-y-3">
+      @for (pkg of result()!.packages; track $index) {
+      <app-package-card [package]="pkg" />
+      }
+    </div>
+  </div>
+</div>
+} @else {
+<div class="p-6 text-center bg-white rounded-lg border border-gray-200 shadow-sm">
+  <div class="text-gray-500">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="lucide lucide-package h-8 w-8 mx-auto mb-3 opacity-50"
+    >
+      <path
+        d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"
+      ></path>
+      <path d="M12 22V12"></path>
+      <path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"></path>
+      <path d="m7.5 4.27 9 5.15"></path>
+    </svg>
+    <h3 class="text-sm font-medium mb-1">بسته‌ای پیدا نشد</h3>
+    <p class="text-xs">فیلترها را تغییر دهید یا بودجه را افزایش دهید</p>
+  </div>
+</div>
+} 

@@ -1,0 +1,25 @@
+<div class="space-y-4">
+  <h3 class="text-sm font-medium text-gray-700">اپراتور اینترنت</h3>
+  <div class="grid grid-cols-3 gap-3">
+    @for (isp of isps; track isp.id) {
+    <div
+      class="cursor-pointer transition-all duration-200 hover:shadow-sm rounded-lg border border-gray-200 bg-white shadow-sm"
+      [ngClass]="{
+        'ring-2 ring-blue-500 bg-blue-50': selectedIsps().includes(isp.id),
+        'hover:bg-gray-50': !selectedIsps().includes(isp.id)
+      }"
+      (click)="onIspChange(isp.id)"
+    >
+      <div class="p-3 text-center">
+        <div class="mb-2">
+          <img [src]="isp.logo" class="mx-auto w-8 lg:w-10"/>
+        </div>
+        <h4 class="text-xs font-medium text-gray-900">{{ isp.name }}</h4>
+      </div>
+    </div>
+    }
+  </div>
+  @if (selectedIsps().length === 0) {
+  <p class="text-xs text-red-500">لطفاً یک اپراتور اینترنت انتخاب کنید</p>
+  }
+</div>

@@ -1,0 +1,34 @@
+<div class="space-y-4">
+  <h3 class="text-sm font-medium text-gray-700">بازه زمانی</h3>
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+    @for (timeframe of timeframeOptions; track timeframe.id) {
+    <div
+      class="cursor-pointer transition-all duration-200 hover:shadow-sm rounded-lg border border-gray-200 bg-white shadow-sm"
+      [ngClass]="{
+        'ring-2 ring-blue-500 bg-blue-50': selectedTimeframes().includes(timeframe.id),
+        'hover:bg-gray-50': !selectedTimeframes().includes(timeframe.id)
+      }"
+      (click)="toggleTimeframe(timeframe.id)"
+    >
+      <div class="p-3 text-center">
+        <div
+          class="w-8 h-8 rounded-full mx-auto mb-2 flex items-center justify-center text-white"
+          [ngClass]="timeframe.color"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            [innerHTML]="getIconPath(timeframe.icon)"
+          ></svg>
+        </div>
+        <h4 class="text-xs font-medium text-gray-900">{{ timeframe.name }}</h4>
+      </div>
+    </div>
+    }
+  </div>
+  @if (selectedTimeframes().length === 0) {
+  <p class="text-xs text-red-500">لطفاً بازه زمانی را مشخص کنید</p>
+  }
+</div>
