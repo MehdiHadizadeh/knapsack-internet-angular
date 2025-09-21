@@ -1,7 +1,7 @@
 <button
   (click)="onOptimizeClick()"
   [disabled]="isLoading()"
-  class="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-400 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2"
+  class="w-full bg-blue-600 hover:bg-blue-700 gap-2 disabled:bg-gray-400 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
 >
   @if (isLoading()) {
   <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>

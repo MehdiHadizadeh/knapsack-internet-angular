@@ -18,21 +18,21 @@
               (ispSelectionChange)="onIspSelectionChange($event)"
             />
 
-            <div class="border-t border-gray-200 mt-6 mb-6"></div>
+            <div class="border-t border-gray-200 p-3"></div>
 
             <app-duration-selector
               [selectedDurations]="selectedDurations()"
               (durationSelectionChange)="onDurationSelectionChange($event)"
             />
 
-            <div class="border-t border-gray-200 mt-6 mb-6"></div>
+            <div class="border-t border-gray-200 p-3"></div>
 
             <app-timeframe-selector
               [selectedTimeframes]="selectedTimeframes()"
               (timeframeSelectionChange)="onTimeframeSelectionChange($event)"
             />
 
-            <div class="border-t border-gray-200 mt-6 mb-6"></div>
+            <div class="border-t border-gray-200 p-3"></div>
 
             <app-budget-input [budget]="budget()" (budgetChange)="onBudgetChange($event)" />
           </div>

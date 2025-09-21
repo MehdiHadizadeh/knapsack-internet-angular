@@ -1,4 +1,4 @@
-import { CommonModule, DecimalPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, computed, input } from '@angular/core';
 import { PackageCard } from '../package-card/package-card';
 import { OptimizationResult } from '../../shared/models/package.model';
@@ -6,7 +6,7 @@ import { OptimizationResult } from '../../shared/models/package.model';
 @Component({
   selector: 'app-optimization-results',
   standalone: true,
-  imports: [CommonModule, DecimalPipe, PackageCard],
+  imports: [CommonModule, PackageCard],
   templateUrl: './optimization-results.html',
 })
 export class OptimizationResults {

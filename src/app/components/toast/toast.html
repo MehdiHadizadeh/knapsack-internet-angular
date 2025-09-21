@@ -4,37 +4,6 @@
   [ngClass]="toastService.isError() ? 'bg-red-500' : 'bg-green-500'"
 >
   <div class="flex items-center text-white">
-    @if (toastService.isError()) {
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6 ml-2"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M12 9v2m0 4h.01m-6.938 4.938a9 9 0 1113.876 0M12 10V6M9.172 14.828a4 4 0 105.656-5.656M12 12h.01M12 18h.01M12 14v4"
-      />
-    </svg>
-    } @else {
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      class="h-6 w-6 ml-2"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-    }
     <span>{{ toastService.message() }}</span>
   </div>
 </div>
