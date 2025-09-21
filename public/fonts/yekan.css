@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'Yekan Bakh FaNum';
+  font-style: normal;
+  font-weight: normal;
+  font-stretch: normal;
+  src: url('./YekanBakh/woff/YekanBakhFaNum-Regular.woff') format('woff'),
+    url('./YekanBakh/woff2/YekanBakhFaNum-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh FaNum';
+  font-style: normal;
+  font-weight: 600;
+  font-stretch: normal;
+  src: url('./YekanBakh/woff/YekanBakhFaNum-SemiBold.woff') format('woff'),
+    url('./YekanBakh/woff2/YekanBakhFaNum-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Yekan Bakh FaNum';
+  font-style: normal;
+  font-weight: bold;
+  font-stretch: normal;
+  src: url('./YekanBakh/woff/YekanBakhFaNum-Bold.woff') format('woff'),
+    url('./YekanBakh/woff2/YekanBakhFaNum-Bold.woff2') format('woff2');
+}
+
+/* ... and so on for other weights if you have them */

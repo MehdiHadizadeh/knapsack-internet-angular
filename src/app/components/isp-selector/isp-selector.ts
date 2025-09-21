@@ -12,8 +12,8 @@ export class IspSelector {
   readonly ispSelectionChange = output<string[]>();
 
   readonly isps = [
-    { id: 'irancell', name: 'ایرانسل', logo: './assets/img/irancell-logo.png' },
-    { id: 'mci', name: 'همراه اول', logo: './assets/img/MCI-logo.png' },
+    { id: 'irancell', name: 'ایرانسل', logo: 'img/irancell-logo.png' },
+    { id: 'mci', name: 'همراه اول', logo: 'img/MCI-logo.png' },
   ];
 
   onIspChange(ispName: string): void {
