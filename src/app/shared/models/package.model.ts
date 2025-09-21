@@ -17,4 +17,5 @@ export interface OptimizationResult {
     totalVolume: number;
     totalPrice: number;
     packages: Package[];
+    mostEffective: Package;
 }

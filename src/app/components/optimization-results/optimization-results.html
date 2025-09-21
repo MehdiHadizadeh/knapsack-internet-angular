@@ -1,4 +1,5 @@
 @if (!result()) {
+
 <div class="p-6 text-center bg-white rounded-lg border border-gray-200 shadow-sm">
   <div class="text-gray-500">
     <svg
@@ -19,8 +20,48 @@
   </div>
 </div>
 } @else if (result()?.packages?.length) {
+<!-- Tab Navigation -->
+<div class="grid w-full grid-cols-2 bg-gray-100 rounded-lg p-1">
+  <button
+    (click)="activeTab.set('combination')"
+    class="flex items-center justify-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 gap-1"
+    [ngClass]="{
+      'bg-white text-gray-900 shadow-sm': activeTab() === 'combination',
+      'text-gray-600 hover:text-gray-900': activeTab() !== 'combination'
+    }"
+  >
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+      />
+    </svg>
+    <span>بیشترین حجم</span>
+  </button>
+  <button
+    (click)="activeTab.set('single')"
+    class="flex items-center justify-center space-x-1 px-3 py-2 text-sm font-medium rounded-md transition-all duration-200 gap-1"
+    [ngClass]="{
+      'bg-white text-gray-900 shadow-sm': activeTab() === 'single',
+      'text-gray-600 hover:text-gray-900': activeTab() !== 'single'
+    }"
+  >
+    <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </svg>
+    <span>به‌صرفه‌ترین</span>
+  </button>
+</div>
+
 <div class="space-y-4">
-  <!-- Summary Card -->
+  @if (activeTab() === 'combination') {
   <div
     class="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-gray-200 shadow-sm"
   >
@@ -62,8 +103,6 @@
       </div>
     </div>
   </div>
-
-  <!-- Packages List -->
   <div>
     <h3 class="text-sm font-semibold text-gray-900 mb-3">بسته‌های پیشنهادی</h3>
     <div class="space-y-3">
@@ -72,7 +111,13 @@
       }
     </div>
   </div>
+  } @else if(result()?.mostEffective) {
+  <h3 class="text-sm font-semibold text-gray-900 mb-3 mt-3">به‌صرفه‌ترین بسته</h3>
+
+  <app-package-card [package]="result()!.mostEffective" />
+  }
 </div>
+
 } @else {
 <div class="p-6 text-center bg-white rounded-lg border border-gray-200 shadow-sm">
   <div class="text-gray-500">
@@ -99,4 +144,4 @@
     <p class="text-xs">فیلترها را تغییر دهید یا بودجه را افزایش دهید</p>
   </div>
 </div>
-} 
+}

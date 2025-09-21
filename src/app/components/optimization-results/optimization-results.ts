@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { PackageCard } from '../package-card/package-card';
 import { OptimizationResult } from '../../shared/models/package.model';
 
@@ -13,6 +13,7 @@ export class OptimizationResults {
   readonly result = input<OptimizationResult | null>();
   readonly budget = input.required<number>();
 
+  readonly activeTab = signal<'combination' | 'single'>('combination');
   readonly Math = Math;
 
   readonly remainingBudget = computed(() => {
