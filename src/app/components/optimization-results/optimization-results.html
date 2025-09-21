@@ -60,7 +60,7 @@
   </button>
 </div>
 
-<div class="space-y-4">
+<div class="space-y-4 mt-3">
   @if (activeTab() === 'combination') {
   <div
     class="p-4 bg-gradient-to-r from-blue-50 to-green-50 rounded-lg border border-gray-200 shadow-sm"
@@ -112,7 +112,7 @@
     </div>
   </div>
   } @else if(result()?.mostEffective) {
-  <h3 class="text-sm font-semibold text-gray-900 mb-3 mt-3">به‌صرفه‌ترین بسته</h3>
+  <h3 class="text-sm font-semibold text-gray-900 mb-3">به‌صرفه‌ترین بسته</h3>
 
   <app-package-card [package]="result()!.mostEffective" />
   }
