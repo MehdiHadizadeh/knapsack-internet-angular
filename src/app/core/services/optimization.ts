@@ -9,7 +9,7 @@ import { OptimizationParams, OptimizationResult } from '../../shared/models/pack
 })
 export class OptimizationService {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'https://internet-package-scraper.mehdihadizadeh-k.workers.dev/api';
+  private readonly apiUrl = 'https://api.trafit.ir/api';
 
   findOptimalPackages(params: OptimizationParams): Observable<OptimizationResult> {
     const httpParams = new HttpParams()
