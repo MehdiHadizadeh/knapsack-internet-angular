@@ -1,5 +1,10 @@
+export interface ISPConfig {
+    isp: string;
+    simType: string;
+}
+
 export interface OptimizationParams {
-    isps: string[];
+    ispConfigs: ISPConfig[];
     durations: string[];
     timeframes: string[];
     budget: number;
@@ -11,6 +16,7 @@ export interface Package {
     price: number;
     duration: number;
     timeframe: string;
+    simType: string;
 }
 
 export interface OptimizationResult {

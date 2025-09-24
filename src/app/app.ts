@@ -1,12 +1,9 @@
 // src/app/app.component.ts
 import { ChangeDetectionStrategy, Component, signal, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { finalize } from 'rxjs/operators';
-import { OptimizationParams, OptimizationResult } from './shared/models/package.model';
+import { ISPConfig, OptimizationParams, OptimizationResult } from './shared/models/package.model';
 import { OptimizationService } from './core/services/optimization.js';
-import { WritableSignal } from '@angular/core';
 import { IspSelector } from './components/isp-selector/isp-selector';
 import { DurationSelector } from './components/duration-selector/duration-selector';
 import { TimeframeSelector } from './components/timeframe-selector/timeframe-selector';
@@ -35,8 +32,8 @@ import { OptimizationResults } from './components/optimization-results/optimizat
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
-  readonly selectedIsps = signal<string[]>(['irancell']);
-  readonly selectedDurations = signal<string[]>(['7']);
+  readonly selectedISPConfigs = signal<ISPConfig[]>([{ isp: 'irancell', simType: 'prepaid' }]);
+  readonly selectedDurations = signal<string[]>(['30']);
   readonly selectedTimeframes = signal<string[]>(['24H']);
   readonly budget = signal<number>(100000);
   readonly results = signal<OptimizationResult | null>(null);
@@ -45,8 +42,8 @@ export class App {
   private readonly optimizationService = inject(OptimizationService);
   private readonly toastService = inject(ToastService);
 
-  onIspSelectionChange(isps: string[]): void {
-    this.selectedIsps.set(isps);
+  onISPConfigChange(configs: ISPConfig[]): void {
+    this.selectedISPConfigs.set(configs);
   }
 
   onDurationSelectionChange(durations: string[]): void {
@@ -70,7 +67,7 @@ export class App {
 
     this.isLoading.set(true);
     const params: OptimizationParams = {
-      isps: this.selectedIsps(),
+      ispConfigs: this.selectedISPConfigs(),
       durations: this.selectedDurations(),
       timeframes: this.selectedTimeframes(),
       budget: this.budget(),
@@ -91,7 +88,7 @@ export class App {
   }
 
   private validateSelection(): string | null {
-    if (!this.selectedIsps().length) {
+    if (!this.selectedISPConfigs().length) {
       return 'لطفاً یک اپراتور اینترنت را انتخاب کنید.';
     }
     if (!this.selectedDurations().length) {

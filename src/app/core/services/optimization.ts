@@ -13,11 +13,11 @@ export class OptimizationService {
 
   findOptimalPackages(params: OptimizationParams): Observable<OptimizationResult> {
     const httpParams = new HttpParams()
-      .set('isp', params.isps.join(','))
+      .set('isp', JSON.stringify(params.ispConfigs))
       .set('duration', params.durations.join(','))
       .set('timeframe', params.timeframes.join(','))
       .set('budget', params.budget.toString());
 
-    return this.http.get<OptimizationResult>(`${this.apiUrl}/knapsack`, { params: httpParams });
+    return this.http.get<OptimizationResult>(`${this.apiUrl}/knapsack_new`, { params: httpParams });
   }
 }

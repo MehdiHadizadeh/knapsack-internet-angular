@@ -4,12 +4,12 @@
     <div class="space-y-4">
       <div>
         <input
-          type="number"
-          [value]="budget() || ''"
+          type="text"
+          [value]="formatBudget(budget())"
           (input)="handleBudgetChange($event)"
           placeholder="بودجه را وارد نمایید"
           class="text-sm w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-          min="0"
+          inputmode="numeric"
         />
       </div>
 

@@ -105,6 +105,7 @@
   </div>
   <div>
     <h3 class="text-sm font-semibold text-gray-900 mb-3">بسته‌های پیشنهادی</h3>
+    <p class="text-xs mb-3">تمامی قیمت‌ها با احتساب مالیات است</p>
     <div class="space-y-3">
       @for (pkg of result()!.packages; track $index) {
       <app-package-card [package]="pkg" />
@@ -113,8 +114,10 @@
   </div>
   } @else if(result()?.mostEffective) {
   <h3 class="text-sm font-semibold text-gray-900 mb-3">به‌صرفه‌ترین بسته</h3>
-
-  <app-package-card [package]="result()!.mostEffective" />
+  <p class="text-xs mb-3">تمامی قیمت‌ها با احتساب مالیات است</p>
+  <div>
+    <app-package-card [package]="result()!.mostEffective" />
+  </div>
   }
 </div>
 

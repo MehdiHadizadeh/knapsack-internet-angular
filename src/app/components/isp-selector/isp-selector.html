@@ -1,25 +1,53 @@
 <div class="space-y-4">
   <h3 class="text-sm font-medium text-gray-700">اپراتور اینترنت</h3>
-  <div class="grid grid-cols-3 gap-3">
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
     @for (isp of isps; track isp.id) {
     <div
-      class="cursor-pointer transition-all duration-200 hover:shadow-sm rounded-lg border border-gray-200 bg-white shadow-sm"
+      class="cursor-pointer transition-all duration-200 rounded-lg border bg-white shadow-sm flex justify-between items-center"
       [ngClass]="{
-        'ring-2 ring-blue-500 bg-blue-50': selectedIsps().includes(isp.id),
-        'hover:bg-gray-50': !selectedIsps().includes(isp.id)
+        'ring-2 ring-blue-500 bg-blue-50 border-blue-200': isSelected(isp.id),
+        'hover:bg-gray-50 border-gray-200': !isSelected(isp.id)
       }"
-      (click)="onIspChange(isp.id)"
+      (click)="toggleISP(isp)"
     >
-      <div class="p-3 text-center">
-        <div class="mb-2">
-          <img [src]="isp.logo" class="mx-auto w-8 lg:w-10"/>
+      <div class="p-3 gap-2 align-items-center flex text-center items-center">
+        <div>
+          <img [src]="isp.logo" class="mx-auto w-8 lg:w-10" alt="{{ isp.name }}" />
         </div>
         <h4 class="text-xs font-medium text-gray-900">{{ isp.name }}</h4>
+      </div>
+
+      <div class="p-3" (click)="$event.stopPropagation()">
+        <div class="flex gap-2">
+          @for (simType of isp.simType; track simType.id) {
+          <label
+            [htmlFor]="isp.id + '-' + simType.id"
+            class="flex-1 cursor-pointer flex items-center justify-center gap-1.5 p-2 rounded-md border transition-all duration-200 hover:bg-gray-50 text-xs font-medium"
+            [ngClass]="{
+              'border-blue-500 bg-blue-50 text-blue-700': selectedSimType(isp.id) === simType.id,
+              'border-gray-200 bg-white text-gray-500': selectedSimType(isp.id) !== simType.id
+            }"
+          >
+            <input
+              type="radio"
+              class="sr-only"
+              [id]="isp.id + '-' + simType.id"
+              [name]="isp.id + '-sim-type'"
+              [value]="simType.id"
+              [checked]="selectedSimType(isp.id) === simType.id"
+              (change)="selectSimType(isp.id, simType.id)"
+            />
+            <span>{{ simType.label }}</span>
+          </label>
+          }
+        </div>
       </div>
     </div>
     }
   </div>
-  @if (selectedIsps().length === 0) {
+
+  @if (selectedConfigs().length === 0) {
   <p class="text-xs text-red-500">لطفاً یک اپراتور اینترنت انتخاب کنید</p>
   }
 </div>

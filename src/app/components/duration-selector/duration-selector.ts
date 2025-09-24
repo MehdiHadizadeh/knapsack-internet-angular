@@ -12,7 +12,7 @@ export class DurationSelector {
   readonly selectedDurations = input.required<string[]>();
   readonly durationSelectionChange = output<string[]>();
 
-  readonly durationOptions = ['1', '3', '7', '15', '30', '60', '90', '120'];
+  readonly durationOptions = ['1', '3', '7', '15', '30', '60', '90', '120', '180', '365'];
 
   toggleDuration(duration: string): void {
     const currentSelection = this.selectedDurations();
